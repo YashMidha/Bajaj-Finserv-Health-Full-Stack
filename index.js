@@ -1,9 +1,16 @@
 import express from "express";
 import bodyParser from "body-parser";
+import cors from "cors";
 
 const app = express();
 app.use(bodyParser.json());
 const PORT = 3000;
+
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 const FULL_NAME = "yash_midha"; 
 const DOB = "14062003"; 
@@ -41,7 +48,6 @@ app.post("/bfhl", (req, res) => {
       }
     });
 
-    console.log(alphabets);
     let concat = alphabets.join("");
     let reversed = concat.split("").reverse();
     let altCaps = reversed.map((char, i) =>
